@@ -280,7 +280,21 @@ html[lang="en"] .letter-footer{font-size:16px;font-weight:700;line-height:1.5;le
   <div id="asset-warning" class="asset-warning" hidden>角色素材載入失敗，邀請函仍可使用。<button id="retry-assets">重試素材</button></div>
   <noscript><style>.intro{display:none}</style><p class="noscript">此互動原型需要 JavaScript。聚會資料尚未填寫，未提供真實回覆服務。</p></noscript>
   
-<script src="7380fd68758cb0d9b3.js"></script></body>
+<script src="7380fd68758cb0d9b3.js"></script>
+
+<script>
+  const correctTitle = "浣熊送來的邀請函 · 本人親送";
+
+  new MutationObserver(() => {
+    if (document.title !== correctTitle) {
+      document.title = correctTitle;
+    }
+  }).observe(document.querySelector("title"), {
+    childList: true,
+    characterData: true,
+    subtree: true
+  });
+</script></body>
 </html>
 
 
