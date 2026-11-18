@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f1e5d3">
+  <title>浣熊送來的邀請函 · 互動原型</title>
+  <link rel="icon" href="assets/raccoon-reference/pose-12.png" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="vendor/gsap.min.js"></script>
+  <script defer src="content.js"></script>
+  
+  <script defer src="assets/whole-hd/manifest.js"></script>
+  <script defer src="whole-character.js"></script>
+  <script defer src="letter-reader.js"></script>
+  <script defer src="locale.js"></script>
+  <script defer src="app-v3.js"></script>
+</head>
+<body data-scene="loading">
+  <header class="site-header">
+    <a class="wordmark" href="#" aria-label="回到首頁並重播開場"><span class="post-icon" aria-hidden="true">✉</span> <span id="wordmark-label">本人親送</span></a>
+    <button id="language-toggle" class="text-button language-toggle" type="button" aria-label="切換成英文">中文太多了</button>
+    <div class="header-controls"><button id="pause-motion" class="text-button" aria-pressed="false">暫停動畫</button><button id="replay" class="text-button" hidden><span aria-hidden="true">↺</span> 重播開場</button></div>
+  </header>
+
+  <section id="intro" class="intro" aria-label="浣熊送信開場">
+    <div class="intro-copy">
+      <div class="intro-title-frame">
+        <svg class="intro-title-ornament" viewBox="0 0 660 180" aria-hidden="true" focusable="false" fill="none">
+          <g stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M202 35h112m32 0h112M228 153h87m30 0h87"/>
+            <path d="M313 35q12-2 17-10 5 8 17 10M315 153q10 0 15 8 5-8 15-8"/>
+          </g>
+          <g fill="currentColor">
+            <path d="M330 2c-12 11-8 18 0 27 8-9 12-16 0-27Zm-6 23c-16-20-23-7-15-1 4-7 10-2 15 1Zm12 0c16-20 23-7 15-1-4-7-10-2-15 1Zm-6 5 4 5-4 5-4-5Z"/>
+            <path d="m330 151 4 5-4 5-4-5Zm-9 7c-9-6-13 3-7 4 0-4 4-4 7-4Zm18 0c9-6 13 3 7 4 0-4-4-4-7-4Z"/>
+          </g>
+        </svg>
+        <h1>這是什麼？</h1>
+      </div>
+      <p id="intro-caption">請稍等一下，信差有點忙。</p>
+    </div>
+    <div class="intro-ground" aria-hidden="true"></div>
+    <div id="intro-actor" class="actor intro-actor" aria-hidden="true"><img alt="" src="assets/raccoon-reference/pose-12.png"></div>
+    <div id="envelope" class="envelope" aria-hidden="true">
+      <svg class="envelope-art" viewBox="0 0 240 160" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="envelope-slot"><rect x="-50" y="-300" width="340" height="454"/></clipPath></defs>
+        <path d="M10 21Q120 15 230 21L232 154Q119 160 9 154Z" fill="#f6e2bc" stroke="#513329" stroke-width="3" stroke-linejoin="round"/>
+
+        <g clip-path="url(#envelope-slot)"><g id="extract-paper"><image href="assets/invitation-typeset.svg" x="26" y="30" width="188" height="250.67" preserveAspectRatio="xMidYMid meet"/></g></g>
+        <path d="M10 22 118 103 230 22 232 154Q120 160 9 154Z" fill="#f9e7c7" stroke="#513329" stroke-width="3" stroke-linejoin="round"/>
+        <path d="m11 152 77-58m143 58-79-58" fill="none" stroke="#c79d6e" stroke-width="2"/>
+<g id="envelope-flap">        <path d="M10 21 120 105 230 21Z" fill="#ffedcd" stroke="#513329" stroke-width="3" stroke-linejoin="round"/>        <g id="envelope-seal"><circle cx="120" cy="104" r="21" fill="#b66c35" stroke="#8e4d27" stroke-width="2"/><g fill="#794124"><ellipse cx="108" cy="98" rx="4" ry="5" transform="rotate(-20 108 98)"/><ellipse cx="117" cy="92" rx="4" ry="5"/><ellipse cx="127" cy="95" rx="4" ry="5"/><ellipse cx="134" cy="102" rx="3.5" ry="4.5"/><path d="M105 112c0-5 5-5 9-10 3-3 7-2 9 2 2 4 8 4 8 9 0 6-8 3-12 3-6 0-14 3-14-4Z"/></g></g></g>
+      </svg>
+    </div>
+    <div id="flying-letter" class="flying-letter" aria-hidden="true"><img src="assets/invitation-typeset.svg" alt=""></div>
+    <div class="intro-bottom" hidden><span id="intro-progress">01 / 03　送信途中</span><button id="skip" class="text-button">略過動畫 <span aria-hidden="true">↗</span></button></div>
+  </section>
+
+  <main id="invitation" class="invitation" hidden tabindex="-1">
+
+    <div id="paper-wrap" class="paper-wrap">
+      <article id="paper" class="paper illustrated-paper" aria-label="邀請函">
+        <img class="invitation-art" src="assets/invitation-typeset.svg" width="1086" height="1448" alt="邀請函。活動名稱、日期、時間與地點尚未確定。活動內容：不知道。特別注意事項：本邀請函僅於您恢復健康後生效；在此之前，除醫院及必要行程外，暫不核准其他行程；邀請函運送過程中如發生跌倒、信件飛出或其他意外，恕不負責。本邀請函不保證任何活動一定會發生，但誠意應該是有的。">
+        <div class="paper-top"><span>INVITATION</span><span class="paper-emblem" aria-hidden="true">✳</span><span>FOR YOU</span></div>
+        <div class="title-slot" data-field="eventTitle" aria-label="聚會名稱，留白"><span class="blank-line title-line" aria-hidden="true"></span></div>
+        <div class="body-slot" data-field="invitationBody" aria-label="邀請文案，留白"><span class="blank-line"></span><span class="blank-line short"></span></div>
+        <dl class="event-details">
+          <div><dt><span>01</span> 日期</dt><dd data-field="date" aria-label="日期，留白"></dd></div>
+          <div><dt><span>02</span> 時間</dt><dd data-field="time" aria-label="時間，留白"></dd></div>
+          <div><dt><span>03</span> 地點</dt><dd data-field="venue" aria-label="地點，留白"></dd></div>
+        </dl>
+        <p class="empty-note">聚會資料留白，等候填入。</p>
+        <div class="paper-bottom"><span>WITH LOVE, & A LITTLE CHAOS</span><svg viewBox="0 0 48 30" width="48" height="30" aria-hidden="true"><path d="M6 14c2-12 10-12 11-3 0 9-6 15-9 12-3-4 9-10 17-12s18 0 15 4-8 5-10 2 3-11 9-13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+      </article>
+      <svg id="paper-tug-corner" class="paper-tug-corner" aria-hidden="true" preserveAspectRatio="none" hidden><path id="paper-tug-flap" fill="#fff9ed" stroke="#ae9571" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      <span id="happy-hearts" class="happy-hearts" aria-hidden="true" hidden><span>♥</span><span>♡</span><span>♥</span></span>
+      <p id="celebration-message" class="celebration-message" role="status" hidden>那我們不知道見，多喝熱水</p>
+      <button id="tug-actor" class="actor tug-actor" aria-label="請浣熊放手" hidden><img alt="" src="assets/raccoon-reference/pose-13.png"><span class="tug-hint">輕點，請牠放手</span></button>
+      <div id="tug-hands" aria-hidden="true" hidden><i></i><i></i></div>
+    </div>
+    <section class="rsvp" aria-labelledby="rsvp-title">
+      <div class="rsvp-topline"><h2 id="rsvp-title">我這樣算正式發邀請給你了吧，怎麼說？</h2><span>RSVP</span></div>
+      <div class="rsvp-actions">
+        <button id="attending" class="rsvp-button primary" aria-pressed="false">好好好好好 <span aria-hidden="true">↗</span></button>
+        <div id="pending-slot"><button id="pending" class="rsvp-button secondary" aria-pressed="false">不要不要不要 <span aria-hidden="true">…</span></button><button id="restore" class="restore-button" hidden>拿回選項 <span aria-hidden="true">↶</span></button></div>
+      </div>
+      <p id="response-status" class="response-status" role="status" aria-live="polite">尚未選擇回覆</p>
+      <p class="demo-note">示範回覆，尚未送交主辦人。</p>
+    </section>
+    <div class="letter-footer"><span>如有任何疑問，請自行想像。</span><span aria-hidden="true">✳</span></div>
+  </main>
+
+  <div id="reaction-layer" class="reaction-layer"><div id="reaction-actor" class="actor reaction-actor" aria-hidden="true" hidden><img alt="" src="assets/raccoon-reference/pose-12.png"></div><div id="button-clone" class="rsvp-button secondary button-clone" aria-hidden="true" hidden>不要不要不要 <span>…</span></div></div>
+  <button id="chase-catch" class="chase-catch" aria-label="抓住浣熊，拿回選項" hidden></button><p id="chase-message" class="chase-message" role="status" hidden></p>
+  <footer class="site-footer" hidden><span>小信差 · 互動邀請函</span><details id="play-tools"><summary>試玩工具 <span aria-hidden="true">＋</span></summary><div class="tools"><button id="inspect-carry">看清送信造型</button><button id="inspect-closed">看清閉合信封</button><button id="inspect-open">看清拆信動作</button><button id="test-tug">再看偷扯信紙</button><button id="reset-demo">重設彩蛋與回覆</button><label><input id="reduce-motion" type="checkbox"> 減少動態</label><small id="scene-label">載入中</small></div></details></footer>
+  <div id="asset-warning" class="asset-warning" hidden>角色素材載入失敗，邀請函仍可使用。<button id="retry-assets">重試素材</button></div>
+  <noscript><style>.intro{display:none}</style><p class="noscript">此互動原型需要 JavaScript。聚會資料尚未填寫，未提供真實回覆服務。</p></noscript>
+  <script src="cursor.js" defer></script>
+</body>
+</html>
+
+
+
+
+
